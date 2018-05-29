@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/video.css">
+    <script src="js/fontSize.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link href="http://at.alicdn.com/t/font_420278_g4g64uqh7rqqia4i.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <header>
+        <img src="images/logo.png" alt="">
+        <div>健康由我</div>
+        <button>安全下载</button>
+    </header>
+    <div class="side">APP内打开</div>
+    <article class="subject">
+        <header>
+            <h1>高血压病诊治知识及认识误区，高血压是遗传病吗？</h1>
+            <p>
+                <img src="images/logo.png" alt=""> 李成义
+                <time>2017.06.12  18:50</time>
+            </p>
+        </header>
+
+        <section>
+            <div class="video_con">
+                <div class="video_play_num">
+                    <i class="icon iconfont icon-play1 video_play"></i>
+                </div>
+                <video controls="controls" class="video_paused" src="http://osnoexk1e.bkt.clouddn.com/14729800bd264690af33c01c09e65da1.mp4">
+                </video>
+            </div>
+        </section>
+    </article>
+    <article class="comment">
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>讲的不错，挺详细的</p>
+            </div>
+        </article>
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>
+                    讲的不错，挺详细的
+                </p>
+                <section>
+                    <h3>马晓月：</h3>
+                    <span>666</span>
+                </section>
+            </div>
+        </article>
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>讲的不错，挺详细的</p>
+            </div>
+        </article>
+        <div class="more">查看更多回复</div>
+    </article>
+
+</body>
+<script>
+    for (var i = 0; i < $('.video_con').length; i++) {
+        (function(i) {
+            document.getElementsByClassName('video_play')[i].onclick = function() {
+                for (var n = 0; n < $('.video_con').length; n++) {
+                    document.getElementsByClassName('video_paused')[n].pause()
+                    $('.video_play_num').fadeIn(100)
+                }
+                document.getElementsByClassName('video_paused')[i].play()
+                $(this).parent().fadeOut(100)
+            }
+            document.getElementsByClassName('video_paused')[i].onclick = function() {
+                document.getElementsByClassName('video_paused')[i].pause()
+                $(this).prev().fadeIn(100)
+            }
+            document.getElementsByClassName('video_paused')[i].addEventListener('ended', function() {
+                $('.video_play_num').fadeIn(100)
+            })
+        })(i)
+    }
+</script>
+
+</html>

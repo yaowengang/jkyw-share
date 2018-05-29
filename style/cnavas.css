@@ -1,0 +1,117 @@
+        body {
+            background: #dddddd;
+        }
+        
+        .canvas_box {
+            position: relative;
+            margin: auto;
+            width: 29rem;
+        }
+        
+        .picture_list {
+            margin-top: 10px;
+            background: #ffffff;
+            width: 29rem;
+            height: 15rem;
+            position: relative;
+        }
+        
+        #canvas2 {
+            margin-top: -4px;
+            background: #ffffff;
+            width: 29rem;
+            height: 15rem;
+        }
+        
+        #canvas3 {
+            position: absolute;
+            width: 5rem;
+            height: 5rem;
+            top: 16.8rem;
+            left: 12rem;
+        }
+        
+        #glasspane {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            padding: 0px 20px 10px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #eeeeee;
+            font-family: Droid Sans, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            -moz-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+        }
+        
+        #glasspane h2 {
+            font-weight: normal;
+        }
+        
+        #glasspane .title {
+            font-size: 2em;
+            color: rgba(255, 255, 0, 0.8);
+        }
+        
+        #glasspane a:hover {
+            color: yellow;
+        }
+        
+        #glasspane a {
+            text-decoration: none;
+            color: #cccccc;
+            font-size: 3.5em;
+        }
+        
+        #glasspane p {
+            margin: 10px;
+            color: rgba(65, 65, 220, 1.0);
+            font-size: 12pt;
+            font-family: Palatino, Arial, Helvetica, sans-serif;
+        }
+        
+        .picture {
+            width: 9.4rem;
+            height: 9.4rem;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+        }
+        
+        .p1 {
+            background: url(../images/picture_01.png) no-repeat;
+            background-size: cover;
+        }
+        
+        .p2 {
+            background: url(../images/picture_02.png) no-repeat;
+            background-size: cover;
+        }
+        
+        .p3 {
+            background: url(../images/picture_03.png) no-repeat;
+            background-size: cover;
+        }
+        
+        .pictureCon {
+            width: 7.7rem;
+            font-size: 1.5rem;
+            color: #fff;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            margin: auto;
+            line-height: 2.1rem;
+            margin-top: 2rem;
+        }
+        
+        .pictureleavl {
+            color: #ee8229;
+            font-size: 1.5rem;
+            width: 7.7rem;
+            text-align: center;
+            margin: auto;
+        }

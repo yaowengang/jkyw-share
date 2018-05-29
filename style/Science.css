@@ -1,0 +1,105 @@
+article.subject {
+  padding: 0 1.3rem;
+  background: #ffffff;
+  margin: auto;
+}
+article.subject header {
+  padding-top: 6.8rem;
+}
+article.subject header h1 {
+  font-size: 2rem;
+  line-height: 2.7rem;
+  color: #333333;
+  margin: 2rem 0;
+}
+article.subject header p {
+  font-size: 1.5rem;
+}
+article.subject header p img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+article.subject header p time {
+  margin-left: 1.8rem;
+  color: #b2b2b2;
+}
+article.subject section {
+  margin-top: 3.3rem;
+  overflow: hidden;
+}
+article.subject section img {
+  width: 100%;
+  border-radius: .3rem;
+}
+article.subject section p {
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  margin: 1.5rem 0;
+}
+article.comment {
+  padding-left: 1.3rem;
+  background: #ffffff;
+  margin-top: .75rem;
+}
+article.comment article {
+  padding-top: 1.2rem;
+}
+article.comment article header img {
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  float: left;
+  margin-right: 1rem;
+}
+article.comment article header h3 {
+  color: #808080;
+  font-size: 1.7rem;
+}
+article.comment article header time {
+  color: #b2b2b2;
+  font-size: 1.5rem;
+}
+article.comment article div {
+  margin-left: 5.4rem;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 1.5rem 0;
+}
+article.comment article div p {
+  color: #333333;
+  font-size: 1.7rem;
+  line-height: 2.2rem;
+}
+article.comment article div section {
+  background: #f5f5f5;
+  padding: 1.5rem 1.7rem;
+  color: #333333;
+  font-size: 1.5rem;
+  width: 96%;
+  border-radius: .5rem;
+  position: relative;
+  margin-top: 1rem;
+}
+article.comment article div section h3 {
+  color: #0353c1;
+  display: inline-block;
+}
+article.comment article div section::before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: -0.9rem;
+  left: 1rem;
+  border-right: 1.6rem solid transparent;
+  border-bottom: 1.6rem solid #f5f5f5;
+  border-left: 1.6rem solid transparent;
+}
+article.comment .more {
+  height: 6.8rem;
+  color: #00d582;
+  font-size: 1.7rem;
+  text-align: center;
+  line-height: 6.8rem;
+}

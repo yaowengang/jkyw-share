@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/audio.css">
+    <script src="js/fontSize.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link href="http://at.alicdn.com/t/font_420278_g4g64uqh7rqqia4i.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <header>
+        <img src="images/logo.png" alt="">
+        <div>健康由我</div>
+        <button>安全下载</button>
+    </header>
+    <div class="side">APP内打开</div>
+    <article class="subject">
+        <header>
+            <h1>高血压病诊治知识及认识误区，高血压是遗传病吗？</h1>
+            <p>
+                <img src="images/logo.png" alt=""> 李成义
+                <time>2017.06.12  18:50</time>
+            </p>
+        </header>
+
+        <section>
+            <audio id="bgMusic" ontimeupdate="progressUpdate()">
+                <source = src="audio.mp3" type="audio/mp3">
+            </audio>
+            <div class="audioBg"><img src="images/conter_01.png" alt=""></div>
+            <div class="progress">
+                <div class="progress_bg">
+                    <div class="progress_bar"></div>
+                </div>
+                <div class="progress_btn"></div>
+            </div>
+            <div class="time_box">
+                <span class="timeshow">00:00</span>
+                <span class="size">00:00</span>
+            </div>
+            <div class="control_box">
+                <span onclick="back()" class="back">5S</span>
+                <span id="control" class="play"></span>
+                <span onclick="fastForward()" class="fastForward">5S</span>
+            </div>
+        </section>
+    </article>
+    <article class="comment">
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>讲的不错，挺详细的</p>
+            </div>
+        </article>
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>
+                    讲的不错，挺详细的
+                </p>
+                <section>
+                    <h3>马晓月：</h3>
+                    <span>666</span>
+                </section>
+            </div>
+        </article>
+        <article>
+            <header>
+                <img src="images/logo.png" alt="">
+                <h3>楚春风</h3>
+                <time pubdate datetime="">10:00</time>
+            </header>
+            <div>
+                <p>讲的不错，挺详细的</p>
+            </div>
+        </article>
+        <div class="more">查看更多回复</div>
+    </article>
+
+</body>
+<script>
+    var audio = document.getElementById("bgMusic"),
+        left = 0;
+
+    function Progress(ewidth) {
+        console.log(ewidth)
+        var tag = false,
+            ox = 0,
+
+            bgleft = 0;
+        progpressWidth = $(".progress").width();
+        $('.progress_btn').on('touchstart', function(e) {
+            ox = e.targetTouches[0].pageX - left;
+            tag = true;
+        });
+        $(document).on('touchend', function(e) {
+            tag = false;
+
+        });
+        $('.progress').on('touchmove', function(evt) { //鼠标移动
+            var e = event || evt;
+            e.preventDefault();
+            if (e.targetTouches.length == 1) {
+                var touch = e.targetTouches[0];
+                if (tag) {
+                    left = touch.pageX - ox;
+                    if (left <= 0) {
+                        left = 0;
+                    } else if (left > progpressWidth) {
+                        left = progpressWidth;
+                    }
+                }
+                console.log(left)
+                audio.currentTime = Math.round(audio.duration * (left / progpressWidth));
+                $('.progress_btn').css('left', ewidth);
+                $('.progress_bar').width(ewidth);
+            }
+
+        });
+        $('.progress_bg').click(function(e) { //鼠标点击
+            console.log(progpressWidth)
+            if (!tag) {
+                bgleft = $('.progress_bg').offset().left;
+                left = e.pageX - bgleft;
+                if (left <= 0) {
+                    left = 0;
+                } else if (left > progpressWidth) {
+                    left = progpressWidth;
+                }
+                audio.currentTime = Math.round(audio.duration * (left / progpressWidth));
+                $('.progress_btn').css('left', ewidth);
+                $('.progress_bar').width(ewidth);
+            }
+        });
+    }
+
+    function transTime(time) {
+        let duration = parseInt(time);
+        let minute = parseInt(duration / 60);
+        let sec = duration % 60 + '';
+        let isM0 = ':';
+        if (minute == 0) {
+            minute = '00';
+        } else if (minute < 10) {
+            minute = '0' + minute;
+        }
+        if (sec.length == 1) {
+            sec = '0' + sec;
+        }
+        return minute + isM0 + sec
+    }
+
+    $("#control").click(function() {
+        if (audio.paused) {
+            audio.play();
+            $(this).addClass("pause").removeClass("play")
+        } else {
+            audio.pause();
+            $(this).addClass("play").removeClass("pause")
+        }
+    })
+
+    function fastForward() {
+        //播放(继续播放)
+        audio.play();
+        audio.currentTime = Math.round(audio.currentTime) + 5;
+        $("#control").addClass("pause").removeClass("play")
+    }
+
+    function back() {
+        //播放(继续播放)
+        audio.play();
+        audio.currentTime = Math.round(audio.currentTime) - 5;
+        $("#control").addClass("pause").removeClass("play")
+    }
+
+
+
+    function progressUpdate() {
+        $(".size").text(transTime(Math.round(audio.duration)));
+        $(".timeshow").text(transTime(Math.round(audio.currentTime)));
+        var ProgressWidth = Math.round(audio.currentTime / audio.duration * 100) + "%";
+        Progress(ProgressWidth)
+        $('.progress_bar').width(ProgressWidth);
+        $('.progress_btn').css('left', ProgressWidth);
+    }
+</script>
+
+</html>

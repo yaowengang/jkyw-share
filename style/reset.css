@@ -1,0 +1,298 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+th,
+td,
+p,
+blockquote,
+pre,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+hr,
+div {
+    margin: 0;
+    padding: 0
+}
+
+body,
+button,
+input,
+select,
+textarea,
+header {
+    font-family: PingFangSC-Medium, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    font-weight: normal
+}
+
+li {
+    list-style: none;
+}
+
+fieldset,
+img {
+    border: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+q:before,
+q:after {
+    content: "";
+}
+
+button,
+input,
+select,
+textarea {
+    font-size: 100%;
+}
+
+legend {
+    color: #000000;
+}
+
+small {
+    font-size: 12px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.clear:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clear {
+    zoom: 1;
+}
+
+i {
+    font-style: normal
+}
+
+body {
+    background: #f5f5f5;
+}
+
+
+/* CSS Reset*/
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: #000;
+}
+
+a:active {
+    outline: 0;
+}
+
+b,
+strong {
+    font-weight: bold;
+}
+
+dfn {
+    font-style: normal;
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    /* For some Androids */
+    outline: none;
+    box-sizing: border-box;
+}
+
+input,
+textarea,
+button {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: PingFangSC-Medium, sans-serif;
+}
+
+textarea {
+    resize: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+form,
+blockquote {
+    margin: 0;
+}
+
+ul,
+ol,
+li,
+dl,
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #ccc;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #ccc;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+
+/* Hides from IE-mac \*/
+
+* html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block !important;
+}
+
+input,
+button {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+body>header {
+    background: #ffffff;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    height: 6.8rem;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+body>header div {
+    line-height: 4.5rem;
+    padding-left: 1rem;
+    display: inline-block;
+    font-size: 1.8rem;
+    color: #00d582;
+}
+
+body>header button {
+    background: #00d582;
+    color: #ffffff;
+    text-align: center;
+    line-height: 3.5rem;
+    height: 3.5rem;
+    width: 10rem;
+    border: none;
+    border-radius: 10rem;
+    float: right;
+    margin-top: .5rem;
+    font-size: 1.6rem;
+}
+
+body>header img {
+    float: left;
+    height: 100%;
+}
+
+.side {
+    position: fixed;
+    width: 8rem;
+    height: 8rem;
+    top: 50%;
+    right: 0;
+    background: rgba(0, 209, 156, 0.87);
+    color: #ffffff;
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 1.2rem;
+    line-height: 3rem;
+    border-radius: .8rem 0 0 .8rem;
+    z-index: 99;
+}

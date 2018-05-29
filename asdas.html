@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>hangge.com</title>
+</head>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<style>
+    #durationBar {
+        width: 100%;
+        height: 1px;
+        margin-bottom: 5px;
+        background: #b3b3b3;
+    }
+    
+    #positionBar {
+        height: 1px;
+        color: white;
+        font-weight: bold;
+        background: #2D9900;
+        text-align: center;
+    }
+    
+    .progress {
+        position: relative;
+        width: 300px;
+        margin: 100px auto;
+    }
+    
+    .progress_bg {
+        height: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f2f2f2;
+    }
+    
+    .progress_bar {
+        background: #5FB878;
+        width: 0;
+        height: 10px;
+        border-radius: 5px;
+    }
+    
+    .progress_btn {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        position: absolute;
+        background: #fff;
+        left: 0px;
+        margin-left: -10px;
+        top: -5px;
+        cursor: pointer;
+        border: 1px #ddd solid;
+        box-sizing: border-box;
+    }
+    
+    .progress_btn:hover {
+        border-color: #F7B824;
+    }
+</style>
+
+<body>
+    <audio id="bgMusic" controls="controls" ontimeupdate="progressUpdate()">
+        <source = src="audio.mp3" type="audio/mp3">
+    </audio>
+    <div id="durationBar">
+        <div id="positionBar"><span id="displayStatus"></span></div>
+    </div>
+
+    <div class="progress">
+        <div class="progress_bg">
+            <div class="progress_bar"></div>
+        </div>
+        <div class="progress_btn"></div>
+        <div class="text">0%</div>
+    </div>
+    <span class="timeshow">00:00</span><span class="size">00:00</span>
+    <button onclick="play()">播放</button>
+    <button onclick="fastForward()">前进</button>
+    <button onclick="back()">后退</button>
+</body>
+<script>
+    var audio = document.getElementById("bgMusic");
+
+    function Progress(ewidth) {
+        var tag = false,
+            ox = 0,
+            left = 0,
+            bgleft = 0;
+        $('.progress_btn').mousedown(function(e) {
+            ox = e.pageX - left;
+            tag = true;
+        });
+        $(document).mouseup(function() {
+            tag = false;
+        });
+        $('.progress').mousemove(function(e) { //鼠标移动
+            if (tag) {
+                left = e.pageX - ox;
+                if (left <= 0) {
+                    left = 0;
+                } else if (left > 300) {
+                    left = 300;
+                }
+                audio.currentTime = Math.round(audio.duration * (left / 300));
+                $('.progress_btn').css('left', ewidth);
+                $('.progress_bar').width(ewidth);
+                $('.text').html(ewidth);
+            }
+        });
+        $('.progress_bg').click(function(e) { //鼠标点击
+            if (!tag) {
+                bgleft = $('.progress_bg').offset().left;
+                left = e.pageX - bgleft;
+                if (left <= 0) {
+                    left = 0;
+                } else if (left > 300) {
+                    left = 300;
+                }
+                audio.currentTime = Math.round(audio.duration * (left / 300));
+                $('.progress_btn').css('left', ewidth);
+                $('.progress_bar').width(ewidth);
+                $('.text').html(ewidth);
+            }
+        });
+    }
+
+    function transTime(time) {
+        let duration = parseInt(time);
+        let minute = parseInt(duration / 60);
+        let sec = duration % 60 + '';
+        let isM0 = ':';
+        if (minute == 0) {
+            minute = '00';
+        } else if (minute < 10) {
+            minute = '0' + minute;
+        }
+        if (sec.length == 1) {
+            sec = '0' + sec;
+        }
+        return minute + isM0 + sec
+    }
+
+    function play() {
+
+        //播放(继续播放)
+        if (audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+
+    function fastForward() {
+        //播放(继续播放)
+        audio.play();
+        audio.currentTime = Math.round(audio.currentTime) + 5;
+    }
+
+    function back() {
+        //播放(继续播放)
+        audio.play();
+        audio.currentTime = Math.round(audio.currentTime) - 5;
+    }
+
+
+
+    function progressUpdate() {
+        $(".size").text(transTime(Math.round(audio.duration)));
+        $(".timeshow").text(transTime(Math.round(audio.currentTime)));
+        var ProgressWidth = Math.round(audio.currentTime / audio.duration * 100) + "%";
+        Progress(ProgressWidth)
+        $('.progress_bar').width(ProgressWidth);
+        $('.text').html(ProgressWidth);
+        $('.progress_btn').css('left', ProgressWidth);
+    }
+</script>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<head>
+    <title>Bouncing Balls</title>
+    <link rel="stylesheet" href="style/cnavas.css">
+    <link rel="stylesheet" href="style/reset.css">
+    <script src="js/fontSize.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div class="canvas_box">
+
+
+        <div class='picture_list'>
+            <div class="picture p3">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div>
+            <!--<div class="picture p3">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div>
+            <div class="picture p2">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div>
+            <div class="picture p2">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div>
+             <div class="picture p1">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div>
+            <div class="picture p1">
+                <div class="pictureCon">缺血性心血管风险萨的痕迹</div>
+                <div class="pictureleavl">轻度</div>
+            </div> -->
+        </div>
+
+        <canvas id='canvas2'>  
+        </canvas>
+
+        <canvas id="canvas3"></canvas>
+
+    </div>
+</body>
+<script src="js/canvas.js"></script>
+<script>
+    $(function() {
+        var pictureNum = $(".picture").length;
+        var pictureList = $(".picture");
+        var picturepostion = []
+        console.log(pictureList)
+        switch (pictureNum) {
+            case 6:
+                picturepostion = [{
+                    "top": "0rem",
+                    "left": "2.5rem"
+                }, {
+                    "top": "0rem",
+                    "left": "11rem"
+                }, {
+                    "top": "0rem",
+                    "right": "0rem"
+                }, {
+                    "top": "6.5rem",
+                    "left": "0rem"
+                }, {
+                    "top": "6.5rem",
+                    "left": "8.3rem"
+                }, {
+                    "top": "6.5rem",
+                    "right": "3.2rem"
+                }]
+                break;
+            case 5:
+                picturepostion = [{
+                    "top": "0rem",
+                    "left": "0.5rem"
+                }, {
+                    "top": "0rem",
+                    "left": "10rem"
+                }, {
+                    "top": "1rem",
+                    "right": "0rem"
+                }, {
+                    "top": "6.5rem",
+                    "left": "5.5rem"
+                }, {
+                    "top": "6.5rem",
+                    "left": "15rem"
+                }]
+                break;
+            case 4:
+                picturepostion = [{
+                    "top": "0rem",
+                    "left": "0.5rem"
+                }, {
+                    "top": "1rem",
+                    "left": "10rem"
+                }, {
+                    "top": "3rem",
+                    "right": "2rem"
+                }, {
+                    "top": "6.5rem",
+                    "left": "5.5rem"
+                }]
+                break;
+            case 3:
+                picturepostion = [{
+                    "top": "4rem",
+                    "left": "0.5rem"
+                }, {
+                    "top": "2rem",
+                    "left": "10rem"
+                }, {
+                    "top": "3rem",
+                    "right": "1rem"
+                }]
+                break;
+            case 2:
+                picturepostion = [{
+                    "top": "4rem",
+                    "left": "4.5rem"
+                }, {
+                    "top": "2rem",
+                    "left": "16rem"
+                }]
+                break;
+            case 1:
+                picturepostion = [{
+                    "top": "4rem",
+                    "left": "5.5rem"
+                }]
+                break;
+            default:
+                break;
+        }
+
+        pictureList.each(function(e) {
+            console.log(picturepostion)
+
+            var css = picturepostion[e]
+            $(this).css(css)
+        })
+    });
+</script>
+
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<head>
+    <title>Bouncing Balls</title>
+
+    <style>
+        body {
+            background: #dddddd;
+        }
+        
+        .canvas_box {
+            position: relative;
+        }
+        
+        #canvas {
+            margin-left: 10px;
+            margin-top: 10px;
+            background: #ffffff;
+            width: 29rem;
+            height: 15rem;
+        }
+        
+        #canvas2 {
+            margin-left: 10px;
+            margin-top: -4px;
+            background: #ffffff;
+            width: 29rem;
+            height: 15rem;
+        }
+        
+        #canvas3 {
+            position: absolute;
+            width: 5rem;
+            height: 5rem;
+            top: 16.8rem;
+            left: 13rem;
+        }
+        
+        #glasspane {
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            padding: 0px 20px 10px 10px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #eeeeee;
+            font-family: Droid Sans, Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            -webkit-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            -moz-box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+            box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 20px;
+        }
+        
+        #glasspane h2 {
+            font-weight: normal;
+        }
+        
+        #glasspane .title {
+            font-size: 2em;
+            color: rgba(255, 255, 0, 0.8);
+        }
+        
+        #glasspane a:hover {
+            color: yellow;
+        }
+        
+        #glasspane a {
+            text-decoration: none;
+            color: #cccccc;
+            font-size: 3.5em;
+        }
+        
+        #glasspane p {
+            margin: 10px;
+            color: rgba(65, 65, 220, 1.0);
+            font-size: 12pt;
+            font-family: Palatino, Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <script src="js/fontSize.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div class="canvas_box">
+        <div id='glasspane'>
+            <h2 class='title'>Bouncing Balls</h2>
+            <a id='startButton'>Start</a>
+        </div>
+
+        <canvas id='canvas'>  
+         Canvas not supported  
+        </canvas>
+        <canvas id='canvas2'>  
+        Canvas not supported  
+        </canvas>
+        <canvas id="canvas3"></canvas>
+        <canvas id="canvas1" style="display:none"></canvas>
+    </div>
+    <script>
+        var context2 = document.getElementById('canvas2').getContext('2d');
+        var context1 = document.getElementById('canvas1').getContext('2d');
+        var context3 = document.getElementById('canvas3').getContext('2d');
+
+        //创建新的图片对象
+        var img = new Image();
+        //指定图片的URL
+        img.src = "https://ss1.bdstatic.com/kvoZeXSm1A5BphGlnYG/skin/112.jpg?2";
+        context1.save();
+        context1.arc(100, 100, 50, 0, 2 * Math.PI);
+        // 从画布上裁剪出这个圆形
+        context1.clip();
+        context1.drawImage(img, 50, 50, 100, 100);
+
+        // 封装了一个简单的方法
+        function circleImg(ctx, img, x, y, r) {
+            ctx.save();
+            var d = 2 * r;
+            var cx = x + r;
+            var cy = y + r;
+            ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+            ctx.clip();
+            ctx.drawImage(img, x, y, d, d);
+            ctx.restore();
+        }
+        context1.clip();
+        img.onload = function name(params) {
+            circleImg(context3, img, 0, 0, 50);
+        }
+
+
+        EllipseOne(context2, 290, 300, 428, 228)
+
+
+
+        function EllipseOne(context, x, y, a, b) {
+            var step = (a > b) ? 1 / a : 1 / b;
+            context.beginPath();
+            context.moveTo(x + a, y);
+            for (var i = 0; i < 2 * Math.PI; i += step) {
+                context.lineTo(x + a * Math.cos(i), y + b * Math.sin(i));
+            }
+            context.fillStyle = "#00d582"
+            context.closePath();
+            context.fill();
+            drawText(context, "健康是这样一种东西，它会让你感觉现在是一年中最好的时光", 290, 140, 540, 34);
+        }
+
+        var context = document.getElementById('canvas').getContext('2d'),
+            startButton = document.getElementById('startButton'),
+            glasspane = document.getElementById('glasspane'),
+            paused = true,
+            circles = [],
+            content = ['缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢', '缺血性心血管轻风险', '血压偏高', '新陈代谢严重紊乱', '血糖正常', '呼吸急促', '心率缓慢'];
+        //初始化若干个圆  
+        for (var i = 0; i < content.length; i++) {
+            circles[i] = {
+                x: 100,
+                y: 100,
+                //速度向量  
+                velocityX: 2 * Math.random(),
+                velocityY: 2 * Math.random(),
+                radius: GetRandomNum(40, 60),
+                //toFixed() 方法可把 Number 四舍五入为指定小数位数的数字  
+                color: [
+                    ['rgba(255, 120, 79, 0.8)', 'rgba(249, 211, 36, 0.8)'],
+                    ['rgba(0, 189, 18, 0.8)', 'rgba(0, 245, 179, 0.8)'],
+                    ['rgba(255, 13, 71, 0.8)', 'rgba(255, 175, 152, 0.8)']
+                ]
+
+            };
+        }
+
+        function GetRandomNum(Min, Max) {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            return (Min + Math.round(Rand * Range));
+        }
+        startButton.onclick = function(e) {
+            //该方法将通知 Web 浏览器不要执行与事件关联的默认动作  
+            e.preventDefault();
+            //该方法将停止事件的传播，阻止它被分派到其他 Document 节点  
+            e.stopPropagation();
+            paused = !paused;
+            startButton.innerText = paused ? 'Start' : 'Stop';
+        }
+
+
+        glasspane.onmousedown = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        context.canvas.onmousedown = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+
+        //设置定时器   
+        setInterval(function() {
+            if (!paused) {
+                //清空画布  
+                context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+                //画网格  
+                //绘制圆
+                var colorNumber = 0;
+                circles.forEach(function(circle, i) {
+                    if (i % 2 == 0 && i > 0) {
+                        colorNumber++;
+                        if (colorNumber >= 3) {
+                            colorNumber = 0;
+                        }
+                    }
+                    context.beginPath();
+                    context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+                    var grad = context.createLinearGradient(0, 0, 580, 0);
+                    var dientcolor = circle.color[colorNumber]
+                    grad.addColorStop(0, dientcolor[0]); // 黄 
+                    grad.addColorStop(1, dientcolor[1]); //青                      
+                    context.fillStyle = grad;
+                    context.fill();
+                    drawText(this.context, content[i], circle.x, circle.y - context.measureText(content[i]).width / 4, circle.radius * 2 / 1.5, 20);
+                    adjustPosition(circle);
+                });
+            }
+
+        }, 1000 / 60);
+
+
+        //调整圆的位置坐标  
+        function adjustPosition(circle) {
+            //判断圆的运动坐标是否越界，越界则反向运动  
+            if (circle.x + circle.velocityX + circle.radius > context.canvas.width ||
+                circle.x + circle.velocityX - circle.radius < 0) {
+                circle.velocityX = -circle.velocityX;
+            }
+
+            if (circle.y + circle.velocityY + circle.radius > context.canvas.height ||
+                circle.y + circle.velocityY - circle.radius < 0) {
+                circle.velocityY = -circle.velocityY;
+            }
+
+            circle.x += circle.velocityX;
+            circle.y += circle.velocityY;
+        }
+
+        function drawText(context, t, x, y, w, f) {
+
+            var chr = t.split("");
+            var temp = "";
+            var row = [];
+
+            context.font = f + "px Arial";
+            context.fillStyle = "#ffffff";
+            context.textBaseline = "middle";
+
+            context.textAlign = "center"
+            for (var a = 0; a < chr.length; a++) {
+                if (context.measureText(temp).width < w) {;
+                } else {
+                    row.push(temp);
+                    temp = "";
+                }
+                temp += chr[a];
+            }
+
+            row.push(temp);
+
+            for (var b = 0; b < row.length; b++) {
+                context.fillText(row[b], x, y + (b + 1) * f * 1.2);
+            }
+        }
+    </script>
+</body>
+
+</html>
